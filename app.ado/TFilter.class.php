@@ -61,7 +61,8 @@ class TFilter extends TExpression {
 	 * a regra SQL
 	 */
 
-	public function dump() {
+	public function dump(): string
+	 {
 		return "{$this->variable} {$this->operator} {$this->value}";
 	}
 

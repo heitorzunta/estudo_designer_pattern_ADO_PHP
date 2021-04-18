@@ -10,7 +10,7 @@
     const AND_OPERATOR = 'AND ';
     const OR_OPERATOR = 'OR ';
 
-    abstract public function dump();
+    abstract public function dump(): string;
 
  }
 ?>
