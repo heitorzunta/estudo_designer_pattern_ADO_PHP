@@ -17,12 +17,24 @@
       * @param $operator    = operador lógico de comparação 
       */
 
-      public function add(TExpression $expression, $operator = self::AND_OPERATOR) //aqui usamos self parachar os atributos constantes da classe pai
+    /**
+     * Método Construtor
+     */
+
+     public function __construct()
+     {
+         $this->expressions = array();
+         $this->operators = array();
+         $this->proprieties = array();
+     }
+
+
+      public function add(TExpression $expression, $operator = self::AND_OPERATOR): void //aqui usamos self parachar os atributos constantes da classe pai
       {
           // Na primeira vez, não precisamos de operador lógico para contatenar
           // Exemplo (valor > 13)
           if(empty($this->expressions)){
-              unset($operator); //unset — Destrói a variável especificada
+              $operator = NULL;
           }
 
           //agrega o resultado da expressão a lista de expressões
@@ -37,14 +49,16 @@
         public function dump(): string
         {
             $result = '';
+
+            if(sizeof($this->expressions) > 0) // verificar se a lista esta povoada
             //Concatena a lista de expressões
-            foreach ($this->expressions as $item => $expression){ // key => value 
-                $operator = $this->operators[$item];
-                //Concatena o operador coma respecitiva expressão
-                $result .= $operator . $expression->dump() . ' ';
-                $result = trim($result); //trim — Retira espaço no ínicio e final de uma string
-                return "({$result})";
-            }
+                foreach ($this->expressions as $item => $expression){ // key => value 
+                    $operator = $this->operators[$item];
+                    //Concatena o operador coma respecitiva expressão
+                    $result .= $operator . $expression->dump() . ' ';
+                }
+            $result = trim($result); //trim — Retira espaço no ínicio e final de uma string
+            return "({$result})";
         }
 
         /**
