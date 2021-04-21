@@ -23,4 +23,20 @@ $criteria2->add(new TFilter('idade', 'NOT IN', array(10)));
 
 echo($criteria2->dump()).PHP_EOL;
 
+
+
+//o nome deve iniciar por 'pedro' ou deve iniciar por maria
+$criteria3 = new TCriteria();
+$criteria3->add(new TFilter('nome', 'LIKE', 'maria%'));
+$criteria3->add(new TFilter('nome', 'LIKE', 'pedro%'), TExpression::OR_OPERATOR);
+
+echo($criteria3->dump()).PHP_EOL;
+
+
+//Unindo 2 criterios
+$criteria4 = new TCriteria();
+$criteria4->add($criteria1);
+$criteria4->add($criteria2);
+
+echo($criteria4->dump()).PHP_EOL;
 ?>
